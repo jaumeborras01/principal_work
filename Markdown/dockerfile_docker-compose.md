@@ -1,23 +1,13 @@
-# Docker-Compose
-
-## Intro
-***
+# Dockerfiles & Docker-Compose
 
 Existe dos archivos para el dockercompose:
 * Dockerfile
-* dockercompose.yml
-
-#### Dockerfile
-***
-Es un archivo de texto plano que describe que hay dentro de la imagen, como se crean los contenedores y como deberían montarse.
-
-#### Docker-compose.yml
-***
-Es un archivo de configuracion para docker-compose. Te permite arrancar, combinar y configurar diferentes contenedores a la vez con un solo proceso.
+* docker-compose
 
 ## Dockerfile 
 ***
-Con el archivo Dockerfile podemos indicar como construir el contenedor con una serie de ordenes. Construimos un container de ubuntu pero actualizado;
+Es un archivo de texto plano que describe que hay dentro de la imagen, como se crean los contenedores y como deberían montarse.
+Con el archivo Dockerfile y el comando ``docker build ['nombre'] [patharchivo]`` podemos indicar como construir el contenedor con una serie de ordenes. Construimos un container de ubuntu pero actualizado:
 
 ```Dockerfile
 #Le decimos que imagen utilizar (si no esta descargada se hace pull automaticamente)
@@ -46,6 +36,13 @@ EXPOSE 22
 `VOLUME ['path']` -> Crea o monta un volumen dentro del contenedor
 
 ## Docker-compose
+***
+Te permite arrancar, combinar y configurar diferentes contenedores a la vez con un solo proceso. 
+Por ejemplo si quieres montar un servidor xampp que requiere de php, mysql y apache2, con un solo archivo de configuración puedes arrancar los tres servicios con la configuración deseada sin ir ejecutando comandos uno a uno transformandolo a una manera inteligible para las personas.
+
+Para levantar nuestro **Docker Compose** utilizaremos el siguiente comando -> ``docker-compose up ['path del directorio']`` 
+
+El archivo de configuracion siempre tendrá el nombre de docker-compose.yml con la extensión yml para que lo detecte automaticamente y funcione sin problemas.
 
 ```yaml
 #indica la version del compose, revisa la compatibilidad con la version de docker
@@ -90,11 +87,21 @@ volumes:
 
 ```
 
-#### Source
 
-<https://devtutorial.io/how-to-build-a-docker-compose-yaml-files.html>
-<https://openwebinars.net/blog/que-es-dockerfile/>
-<https://www.fosstechnix.com/dockerfile-instructions/>
-<https://docs.divio.com/en/latest/reference/docker-dockerfile/>
-<https://stackoverflow.com/questions/44450265/what-is-a-docker-compose-yml-file?answertab=votes#tab-top>
-<https://docs.divio.com/en/latest/reference/docker-docker-compose/>
+## Sources
+
+Para más informacion puedes consultar las siguientes referencias:
+
+* <https://devtutorial.io/how-to-build-a-docker-compose-yaml-files.html>
+
+* <https://openwebinars.net/blog/que-es-dockerfile/>
+
+* <https://www.fosstechnix.com/dockerfile-instructions/>
+
+* <https://docs.divio.com/en/latest/reference/docker-dockerfile/>
+
+* <https://stackoverflow.com/questions/44450265/what-is-a-docker-compose-yml-file?answertab=votes#tab-top>
+
+* <https://docs.divio.com/en/latest/reference/docker-docker-compose/>
+
+* <https://docs.docker.com/compose/compose-file/compose-file-v3/>
