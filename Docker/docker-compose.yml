@@ -1,0 +1,41 @@
+version: '3'
+services: 
+    sql_db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        ports:
+            - 3306:3306
+        volumes: #persistencia
+            - ./sqldata:/var/lib/mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_ROOT_PASSWORD: '12345678'
+            MYSQL_USER: joxbr
+            MYSQL_PASSWORD: '12345678'
+            MYSQL_DATABASE: example  
+    
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+          - 8080:8080
+        links: 
+          - sql_db:db
+        environment: 
+            ADMINER_DEFAULT_SERVER: sql_db
+
+    php:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        working_dir: /var/www/php
+        volumes: 
+            - ./php:/var/www/php
+            - ./apache2/virtualhost.conf:/etc/apache2/sites-enabled/000-default.conf
+        ports:
+            - "80:80"
+
+volumes:
+    db-data:
+        driver: local
