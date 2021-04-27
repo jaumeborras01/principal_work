@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Calculator with PHP</h2>
 
 <form action="<?=$_SERVER['PHP_SELF']?>" method="POST">
 
@@ -14,7 +14,7 @@
   <select name="operation">
   <option> plus </option>
   <option> minus </option>
-  <option> mult </option>
+  <option> multi </option>
   <option> div </option>
   <option> modulus </option>
   <option> exponent</option>
@@ -62,7 +62,7 @@
               $result = $calc->exp();
               break;
           }
-          echo "the result of $operation is: $result";
+          echo "<br>the result of $operation is: $result";
         }
 
     }catch(Throwable  $t){
